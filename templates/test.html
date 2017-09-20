@@ -1,0 +1,62 @@
+{{template "header"}}
+<div class="container">
+<div class="row">
+<!-- LIST -->
+<div class=col-md-12>
+    
+    <div class="col-md-12">
+         
+ <form class="form-horizontal" id="form-edit-client" method="post" action="/books/update/process">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Create Book</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="client-name">ID</label>  
+  <div class="col-md-4">
+  <input id="id" name="isbn" type="text" placeholder="ID number" class="form-control input-md" required autofocus value="{{.Isbn}}">
+  <span class="help-block">Id must unique</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="client-name">Title</label>  
+  <div class="col-md-4">
+  <input id="title" name="title" type="text" placeholder="your book's name" class="form-control input-md" required value="{{.Title}}">
+  <span class="help-block">Full name of your book</span>  
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="client-name">Author</label>  
+  <div class="col-md-4">
+  <input id="author" name="author" type="text" placeholder="your author's name" class="form-control input-md"  required value="{{.Author}}">
+  <span class="help-block">Full name of your author</span>  
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="client-name">Price</label>  
+  <div class="col-md-4">
+  <input id="price" name="price" type="text" placeholder="your price's name" class="form-control input-md" required value="{{.Price}}">
+  <span class="help-block">Price</span>  
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="btn-save"></label>
+  <div class="col-md-4">
+    <button id="btn-save" name="btn-save" class="btn btn-success">Update</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div> 
+</div>
+</div>
+{{template "footer"}}

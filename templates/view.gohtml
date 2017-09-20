@@ -1,0 +1,40 @@
+{{template "header"}}
+<div class="container">
+<div class="row">
+
+<!-- view -->
+
+<div class="col-md-12">    
+    <legend>View Book</legend>    
+    <div class="pull-right">
+     <a class="btn btn-default-btn-xs btn-success" href="/books"><i class="glyphicon glyphicon-list"></i> List Books</a>
+      <a class="btn btn-default-btn-xs btn-success" href="/books/create"><i class="glyphicon glyphicon-plus"></i>Create New</a>
+    </div>
+    <div >
+    <div class2=" col-md-9 col-lg-9 ">     
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Id:</td>
+                        <td>{{.Isbn}}</td>
+                      </tr>
+                      <tr>
+                        <td>Title</td>
+                        <td>{{.Title}}</td>
+                      </tr>
+                      <tr>
+                        <td>Author</td>
+                        <td>{{.Author}}</td>
+                      </tr>
+                      <tr>
+                        <td>Price</td>
+                        <td>{{.Price}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+    </div>
+</div> 
+</div>
+</div>
+{{template "footer"}}
