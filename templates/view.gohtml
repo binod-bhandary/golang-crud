@@ -1,11 +1,11 @@
 {{template "header"}}
-<div class="container">
-<div class="row">
+<div class="container-fluid">
+    <div class="row">
+        {{template "sidebar"}}
+       
+        <div class="col-sm-9">
 
-<!-- view -->
-
-<div class="col-md-12">    
-    <legend>View Book</legend>    
+            <legend>View Book</legend>    
     <div class="pull-right">
      <a class="btn btn-default-btn-xs btn-success" href="/books"><i class="glyphicon glyphicon-list"></i> List Books</a>
       <a class="btn btn-default-btn-xs btn-success" href="/books/create"><i class="glyphicon glyphicon-plus"></i>Create New</a>
@@ -34,7 +34,8 @@
                   </table>
             </div>
     </div>
-</div> 
-</div>
+        </div>
+        <!--/col-span-9-->
+    </div>
 </div>
 {{template "footer"}}

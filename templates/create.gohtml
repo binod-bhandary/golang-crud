@@ -1,12 +1,11 @@
 {{template "header"}}
-<div class="container">
-<div class="row">
-<!-- LIST -->
-<div class=col-md-12>
-    
-    <div class="col-md-12">
-         
- <form class="form-horizontal" id="form-edit-client" method="post" action="/books/create/process">
+<div class="container-fluid">
+    <div class="row">
+        {{template "sidebar"}}
+       
+        <div class="col-sm-9">
+
+            <form class="form-horizontal" id="form-edit-client" method="post" action="/books/create/process">
 <fieldset>
 
 <!-- Form Name -->
@@ -58,7 +57,8 @@
 
 </fieldset>
 </form>
-</div> 
-</div>
+        </div>
+        <!--/col-span-9-->
+    </div>
 </div>
 {{template "footer"}}

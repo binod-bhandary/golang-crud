@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"./books"
+	"./config"
 )
 
 func main() {
@@ -19,5 +20,7 @@ func main() {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "/books", http.StatusSeeOther)
+	// http.Redirect(w, r, "/books", http.StatusSeeOther)
+
+	config.TPL.ExecuteTemplate(w, "home.gohtml", r)
 }
