@@ -24,3 +24,9 @@ CREATE TABLE books (
    price         REAL DEFAULT 25500.00,
 );
 ```
+## final step
+open diretory and run code in your command line 
+```
+go run main.go
+```
+ 
