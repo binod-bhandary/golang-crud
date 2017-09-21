@@ -1,26 +1,21 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
-	"./books"
 	"./config"
+	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
-	http.HandleFunc("/", index)
-	http.HandleFunc("/books", books.Index)
-	http.HandleFunc("/books/show", books.Show)
-	http.HandleFunc("/books/create", books.Create)
-	http.HandleFunc("/books/create/process", books.CreateProcess)
-	http.HandleFunc("/books/update", books.Update)
-	http.HandleFunc("/books/update/process", books.UpdateProcess)
-	http.HandleFunc("/books/delete/process", books.DeleteProcess)
-	http.ListenAndServe(":8080", nil)
+	loadRoutes()
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
+func index(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	// http.Redirect(w, r, "/books", http.StatusSeeOther)
-
-	config.TPL.ExecuteTemplate(w, "home.gohtml", r)
+	err := config.TPL.ExecuteTemplate(w, "home.gohtml", nil)
+	if err != nil {
+		log.Println(err)
+	}
 }

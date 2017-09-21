@@ -5,9 +5,10 @@ import (
 	"net/http"
 
 	"../config"
+	"github.com/julienschmidt/httprouter"
 )
 
-func Index(w http.ResponseWriter, r *http.Request) {
+func Index(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -22,7 +23,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "index.gohtml", bks)
 }
 
-func Show(w http.ResponseWriter, r *http.Request) {
+func Show(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -41,11 +42,11 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "show.gohtml", bk)
 }
 
-func Create(w http.ResponseWriter, r *http.Request) {
+func Create(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	config.TPL.ExecuteTemplate(w, "create.gohtml", nil)
 }
 
-func CreateProcess(w http.ResponseWriter, r *http.Request) {
+func CreateProcess(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -60,7 +61,7 @@ func CreateProcess(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "view.gohtml", bk)
 }
 
-func Update(w http.ResponseWriter, r *http.Request) {
+func Update(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -79,7 +80,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "edit.gohtml", bk)
 }
 
-func UpdateProcess(w http.ResponseWriter, r *http.Request) {
+func UpdateProcess(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -94,7 +95,7 @@ func UpdateProcess(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "view.gohtml", bk)
 }
 
-func DeleteProcess(w http.ResponseWriter, r *http.Request) {
+func DeleteProcess(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
