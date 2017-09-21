@@ -40,21 +40,22 @@ func LoginProcess(w http.ResponseWriter, req *http.Request, ps httprouter.Params
 		// is there a username?
 		user, err := LogUser(req)
 		//encrypt db password
-		bs, _ := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.MinCost)
+		// bs, _ := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.MinCost)
 		//store db to variable
-		dbUsers[un] = User{user.ID, user.Fullname, user.Email, user.Username, string(bs)}
+		dbUsers[un] = User{user.ID, user.Fullname, user.Email, user.Username, user.Password}
 		fmt.Println(dbUsers)
 		//store value to variable
 		u, ok := dbUsers[un]
 		if !ok {
 			http.Error(w, "Username and/or password do not match", http.StatusForbidden)
+			http.Redirect(w, req, "/login", http.StatusSeeOther)
 			return
 		}
 		// does the entered password match the stored password?
 		err = bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(p))
-
 		if err != nil {
 			http.Error(w, "Username and/or password do not match", http.StatusForbidden)
+			http.Redirect(w, req, "/login", http.StatusSeeOther)
 			return
 		}
 
@@ -103,4 +104,24 @@ func Login(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if err != nil {
 		log.Println(err)
 	}
+}
+
+func Logout(w http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+
+	if !alreadyLoggedIn(req) {
+		http.Redirect(w, req, "/", http.StatusSeeOther)
+		return
+	}
+	c, _ := req.Cookie("session")
+	// delete the session
+	delete(dbSessions, c.Value)
+	// remove the cookie
+	c = &http.Cookie{
+		Name:   "session",
+		Value:  "",
+		MaxAge: -1,
+	}
+	http.SetCookie(w, c)
+
+	http.Redirect(w, req, "/login", http.StatusSeeOther)
 }

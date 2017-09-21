@@ -39,6 +39,7 @@ func loadRoutes() {
 
 	mux.GET("/login", login.Index)
 	mux.POST("/login/process", login.LoginProcess)
+	mux.GET("/logout", login.Logout)
 
 	http.ListenAndServe(":8080", mux)
 

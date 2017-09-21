@@ -14,7 +14,8 @@ func main() {
 
 func index(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	// http.Redirect(w, r, "/books", http.StatusSeeOther)
-	err := config.TPL.ExecuteTemplate(w, "home.gohtml", nil)
+	u := getUser(w, r)
+	err := config.TPL.ExecuteTemplate(w, "home.gohtml", u)
 	if err != nil {
 		log.Println(err)
 	}

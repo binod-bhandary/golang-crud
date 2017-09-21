@@ -62,13 +62,12 @@ func LogUser(req *http.Request) (User, error) {
 	bk := User{}
 	if req.Method == http.MethodPost {
 		un := req.FormValue("username")
-		fmt.Println(un)
 		// is there a username?
 		if un == "" {
 			return bk, errors.New("400. Bad Request.")
 		}
 
-		row := config.DB.QueryRow("SELECT * FROM user WHERE username = '$1'", un)
+		row := config.DB.QueryRow("SELECT * FROM users WHERE username = $1", un)
 
 		err := row.Scan(&bk.ID, &bk.Fullname, &bk.Email, &bk.Username, &bk.Password)
 		fmt.Println(bk)
